@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Terminator">
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1b1b1f" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="stylesheet" href="mobile.css">
+<title>Terminator</title>
+</head>
+<body>
+<div id="pair" class="pair" hidden>
+  <h1>Terminator</h1>
+  <p>Open Terminator on your Mac, click the phone button at the bottom of the left panel, and scan the code with your iPhone camera.</p>
+  <p id="pair-error" class="error"></p>
+</div>
+<main id="home" hidden>
+  <header class="top">
+    <nav id="tabs" class="tabs" aria-label="Workspaces"></nav>
+    <div id="counts" class="counts" role="status" aria-live="polite"></div>
+  </header>
+  <div id="list" class="list"></div>
+  <p id="offline" class="offline" hidden>Reconnecting to your Mac…</p>
+</main>
+<section id="term-view" class="term-view" hidden aria-label="Terminal">
+  <header class="term-head">
+    <button id="back" class="back" aria-label="Back to terminals">‹</button>
+    <div class="term-title"><strong id="term-title"></strong><span id="term-meta"></span></div>
+    <button id="term-more" class="ghost text-size" aria-label="Text size">Aa</button>
+  </header>
+  <button id="term-prompt" class="term-prompt" hidden></button>
+  <div class="term-wrap"><div id="term-host" class="term-host"></div><button id="to-bottom" class="to-bottom" aria-label="Jump to latest output" hidden>↓</button></div>
+  <div id="term-actions" class="term-actions" hidden></div>
+  <div class="keys" role="group" aria-label="Keys">
+    <button data-key="esc">esc</button><button data-key="tab">tab</button><button data-key="up">↑</button><button data-key="down">↓</button><button data-key="left">←</button><button data-key="right">→</button><button data-key="enter">⏎</button><button data-key="ctrlc">^C</button><button data-key="1">1</button><button data-key="2">2</button><button data-key="3">3</button><button data-key="shifttab">⇧tab</button>
+  </div>
+  <form id="composer" class="composer">
+    <textarea id="message" rows="1" placeholder="Reply…" autocomplete="off" autocapitalize="sentences" enterkeyhint="send"></textarea>
+    <button id="send" type="submit" aria-label="Send">↑</button>
+  </form>
+</section>
+<div id="toast" class="toast" role="status" hidden></div>
+<script src="mobile.js"></script>
+</body>
+</html>

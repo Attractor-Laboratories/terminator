@@ -1,0 +1,4 @@
+const test=require('node:test'),assert=require('node:assert/strict');
+const m={cols:[{start:0,length:100},{start:108,length:100}],rows:[{start:0,length:100},{start:108,length:100}]};
+test('divider and intersection drops span adjacent cells',async()=>{const {dropRect}=await import('../src/grid.mjs');assert.deepEqual(dropRect(m,104,50),{col:0,row:0,colSpan:2,rowSpan:1});assert.deepEqual(dropRect(m,50,104),{col:0,row:0,colSpan:1,rowSpan:2});assert.deepEqual(dropRect(m,104,104),{col:0,row:0,colSpan:2,rowSpan:2});assert.equal(dropRect(m,-1,50),null);});
+test('span targets can include the moved terminal and refuse other occupied cells',async()=>{const {dropRect,fits}=await import('../src/grid.mjs');const rect=dropRect(m,104,50);assert.equal(fits(rect,{cols:2,rows:2},[]),true);assert.equal(fits(rect,{cols:2,rows:2},[{col:1,row:0,colSpan:1,rowSpan:1}]),false);});

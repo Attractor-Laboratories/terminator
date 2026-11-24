@@ -1,0 +1,14 @@
+node_modules/
+release/
+dist/
+screenshots/
+.DS_Store
+Updates/
+Terminalsteroid.app/
+
+*.app/
+.env
+.env.*
+*.log
+.zsh_history
+.zsh_sessions/

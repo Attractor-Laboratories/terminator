@@ -1,0 +1,2 @@
+const net=require('node:net');
+try{const event=JSON.parse(process.argv[2]);if(event.type==='agent-turn-complete'&&process.env.TS_SOCKET){const socket=net.createConnection(process.env.TS_SOCKET);socket.setTimeout(800,()=>socket.destroy());socket.on('error',()=>{});socket.on('connect',()=>socket.end(JSON.stringify({id:process.env.TS_TERMINAL,token:process.env.TS_TOKEN,provider:'codex',session:event['thread-id'],cwd:event.cwd,prompt:event['input-messages']?.at(-1)})+'\n'));}}catch{}

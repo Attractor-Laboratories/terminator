@@ -1,0 +1,37 @@
+{
+  "name": "terminalsteroid",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A spatial terminal workspace",
+  "main": "main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "build": "node build.cjs",
+    "test": "node --test test/*.test.cjs",
+    "package": "npm run build && electron-packager . Terminator --platform=darwin --arch=arm64 --out=release --overwrite --ignore='^/(test|release|screenshots|Updates|Terminalsteroid[.]app|Terminator[.]app)' --app-bundle-id=local.terminalsteroid.app --no-asar --icon=assets/Terminator.icns",
+    "prepare-pty": "node scripts/prepare-pty.cjs",
+    "package:preview": "npm run build && electron-packager . 'Terminator Preview' --platform=darwin --arch=arm64 --out=release --overwrite --ignore='^/(test|release|screenshots|Updates|Terminalsteroid[.]app|Terminator[.]app)' --app-bundle-id=local.terminalsteroid.preview --no-asar --icon=assets/TerminatorPreview.icns && touch 'release/Terminator Preview-darwin-arm64/Terminator Preview.app/Contents/Resources/app/PREVIEW'",
+    "install:preview": "npm run package:preview && xattr -cr 'release/Terminator Preview-darwin-arm64/Terminator Preview.app' && bash scripts/install-app.sh 'Terminator Preview'",
+    "install:app": "npm run package && xattr -cr release/Terminator-darwin-arm64/Terminator.app && bash scripts/install-app.sh Terminator"
+  },
+  "dependencies": {
+    "@xterm/addon-fit": "^0.11.0",
+    "@xterm/addon-serialize": "^0.14.0",
+    "@xterm/xterm": "^6.0.0",
+    "node-pty": "^1.1.0",
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.3.0",
+    "@electron/rebuild": "^4.0.0",
+    "electron": "^45.3.2",
+    "esbuild": "^0.28.2",
+    "playwright": "^1.58.0"
+  },
+  "allowScripts": {
+    "electron": true,
+    "esbuild": true,
+    "node-pty": true
+  },
+  "productName": "Terminator"
+}

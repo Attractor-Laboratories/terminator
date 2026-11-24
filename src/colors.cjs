@@ -1,0 +1,4 @@
+const palette=['#923cff','#00bfb3','#ff8a00','#287aff','#ff3ca6','#75c900','#ff5353','#00b8f0','#f5c400','#6554ff','#ff704c','#e83ee8','#00b86b','#a3c900'];
+const validColor=color=>typeof color==='string'&&/^#[0-9a-f]{6}$/i.test(color);
+function unusedColor(used,preferred){const taken=new Set([...used].map(c=>c.toLowerCase()));if(validColor(preferred)&&!taken.has(preferred.toLowerCase()))return preferred;const free=palette.find(c=>!taken.has(c));if(free)return free;for(let i=0;i<16777216;i++){const value=(0x873cff+i*0x9e3779)%0x1000000;const rgb=[value>>16,(value>>8)&255,value&255];if(Math.max(...rgb)<210||Math.min(...rgb)>120||Math.max(...rgb)-Math.min(...rgb)<130)continue;const color='#'+value.toString(16).padStart(6,'0');if(!taken.has(color))return color;}throw new Error('All colors are in use.');}
+module.exports={palette,validColor,unusedColor};
